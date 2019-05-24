@@ -82,8 +82,6 @@ Solution: use the built-in Rails assets pipeline. The assets pipeline in rails u
 Go to `./app/assets`, save photo in your images folder, and whenever you want to reference this image's path, use the built-in rails helper `image_url` (or `asset_url`). If you want an HTML image tag, you can also use the built in `image_tag` helper method. 
 
 Takeaway: don't put images in `./public`! Make use of the assets pipeline. 
- FOR LATER: ADD CLASS to image tag, style it so it's not...like it is
- (driver will clone repo)
 
 How to access assets in diff parts of your app? 
 - In rails views: `image_url`, `asset_url`, `image_tag`
@@ -102,6 +100,8 @@ Let's go to our app component and use this!
 5) git add ., git commit, git push origin master, git push heroku master
 6) check it out!
  
+ Bootstrapping images on the window will be useful if you want to include a logo on your page. 
+ Avoid having more than a few images in our assets folder - this slows our apps down. Also, we'll all be using AWS for images, so there's not really a need for this. 
 
 ## Troubleshooting
 

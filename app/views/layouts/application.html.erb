@@ -7,13 +7,11 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script type="text/javascript">
-      window.warblerURL = "<%= image_url('warbler.png')%>"
-    </script>
   </head>
 
   <body>
-    <h1>Warbler</h1>    
+    <h1>Warbler</h1>   
+    <%= image_tag "warbler.png" %> 
     <%= yield %>
   </body>
 </html>
