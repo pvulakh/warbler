@@ -1,0 +1,106 @@
+# Heroku
+ - one of the first cloud platforms, allows folks to host their apps on the cloud
+ - used to be only for rails, part of why rails became so popular (heroku made it easy to push to production)
+ - heroku's expanded beyond rails, now supports other frameworks that work with java, node, python, golang, etc
+
+## Highlevel overview: 
+
+We'll add heroku as a git remote repository for Warble and push all our code up.
+
+- we gitignore node_modules , bundle.js so our repo won't have that 
+- we also don't have data or gems on the repo 
+- Just like when we clone a repo/download a skeleton onto a new computer and we do some setup
+ (bundle install for gems and npm install for node modules), 
+  we'll need to do the same set up for heroku
+
+
+## Prepare Warbler :) 
+
+* As you know from looking at our lecture notes, warbler itself was not a git repo
+because we never want nested repositories! In order to push to heroku, 
+we've copied warbler into a seperate directory outside of lecture notes and initialized
+a git repo within this new warbler directory. 
+
+1) remove all debuggers from warbler (cmd+shift+f)
+2) make sure you're gitignoring node_modules, bundle.js
+3) package.json - add engines (our npm and node versions)
+  ```
+  {
+  "engines": { // top-level key
+    "node": "8.4.0", // run node -v to get version 
+    "npm": "6.1.0" // run npm -v to get version
+  },
+  "scripts": { // top-level key
+    "postinstall": "./node_modules/.bin/webpack" // takes care of webacking after we npm install
+  }
+}
+```
+4) `gem 'rails_12factor'` - run rails -v 
+  * if you're using rails < v5, throw in `gem 'rails_12factor'` in your gemfile. 
+  This gem shows you your server logs in production (which is extremely useful for debugging). 
+  If you are using rails 5, then this is included in Rails for you
+4) `bundle install`
+5) `npm install`
+6) `git add .`
+7) `git commit -m 'Prepare for initial heroku push'`
+8) `git push origin master`
+
+## Heroku time! 
+
+In order to push to heroku, you'll need to create a heroku account and download the heroku
+command line interface. [Driver] already has an account and the heroku cli installed so we won't go through
+that process right now. 
+
+There's a reading on aaonline walking you through this process and 
+we'll all push to heroku together, so you'll have all of us to help you with that if you
+run into any snags. 
+
+1) go to heroku.com and login
+2) new --> create new app (warbler-2 if avail)
+3) settings --> add buildpacks: these run in the order specified
+4) heroku/nodejs 
+5) heroku/ruby 
+ * ORDER IMPORTANT! If heroku/ruby ran first, it would recompile our assets before creating a new bundle.js. 
+  We want bundle.js to be up-to-date before Rails recompiles our assets.
+6) back to terminal: log into heroku by running `heroku login` 
+7) `heroku git:remote -a warbler-2`
+8) `git push heroku master`
+  * different from git push origin master! 
+  you will always have to first push to master (or whatever feature branch you're working on), 
+  and THEN push to heroku afterwards
+9 ) `heroku logs -t`
+  * useful command, shows errors like database isn't set up
+9) `git push heroku master db:migrate`
+10) `git push heroku master db:seed`
+
+## Static Images
+
+Old way: put images into the `./public` folder in our app (this is where our 404 page goes, etc)
+You're working on your fullstack, you've saved an image for your splash with the title of 
+`best-cat-ever.png` into `./public`. A few days later, you find a MUCH BETTER cat image and you want to change your splash. You call this image `best-cat-ever.png` as well, and replace it
+in your `./public` folder. You go to look at your site but...the old image is still there!
+That's because the browser cached it since the filename was the same. 
+
+Solution: use the built-in Rails assets pipeline. The assets pipeline in rails uses fingerprinting, which is a type of algorithm
+that makes file names dependent on the file contents (so the actual data).
+
+Go to `./app/assets`, save photo in your images folder, and whenever you want to reference this image's path, use the built-in rails helper `image_url` (or `asset_url`). 
+
+## Troubleshooting
+
+Heroku is pickier than webpack and may reject your initial push if something's broken that webpack didn't pick up.
+- make sure git is up to date (run git status)
+- look at your stack before the push rejected message 
+
+Userful commands for debugging after initial push:
+- `heroku logs -t` shows your heroku logs, server errors etc
+- `heroku run rails console` - lets you interact w prod database
+
+
+## Top Ten FullStack Bugs
+
+https://github.com/appacademy/ny-lecture-notes/blob/master/fullstacks/heroku/top_ten_fullstack_bugs.md
+
+
+
+
