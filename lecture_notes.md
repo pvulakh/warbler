@@ -13,7 +13,6 @@ We'll add heroku as a git remote repository for Warble and push all our code up.
  (bundle install for gems and npm install for node modules), 
   we'll need to do the same set up for heroku
 
-
 ## Prepare Warbler :) 
 
 * As you know from looking at our lecture notes, warbler itself was not a git repo
@@ -31,14 +30,10 @@ a git repo within this new warbler directory.
     "npm": "6.1.0" // run npm -v to get version
   },
   "scripts": { // top-level key
-    "postinstall": "./node_modules/.bin/webpack" // takes care of webacking after we npm install
+    "postinstall": "webpack" // takes care of webacking after we npm install
   }
 }
 ```
-4) `gem 'rails_12factor'` - run rails -v 
-  * if you're using rails < v5, throw in `gem 'rails_12factor'` in your gemfile. 
-  This gem shows you your server logs in production (which is extremely useful for debugging). 
-  If you are using rails 5, then this is included in Rails for you
 4) `bundle install`
 5) `npm install`
 6) `git add .`
@@ -52,7 +47,7 @@ command line interface. [Driver] already has an account and the heroku cli insta
 that process right now. 
 
 There's a reading on aaonline walking you through this process and 
-we'll all push to heroku together, so you'll have all of us to help you with that if you
+we'll all push to heroku together after this mini lecture, so you'll have all of us to help you with that if you
 run into any snags. 
 
 1) go to heroku.com and login
@@ -76,16 +71,19 @@ run into any snags.
 ## Static Images
 
 Old way: put images into the `./public` folder in our app (this is where our 404 page goes, etc)
+[give caching example]
 You're working on your fullstack, you've saved an image for your splash with the title of 
 `best-cat-ever.png` into `./public`. A few days later, you find a MUCH BETTER cat image and you want to change your splash. You call this image `best-cat-ever.png` as well, and replace it
 in your `./public` folder. You go to look at your site but...the old image is still there!
 That's because the browser cached it since the filename was the same. 
 
-Solution: use the built-in Rails assets pipeline. The assets pipeline in rails uses fingerprinting, which is a type of algorithm that makes the fingerprint on the end of the file name dependent on the file contents (so the actual data). Now, if you swapped out 1 image for another but kept the filename the same, the browser will know not to use the cached version because the fingerprint has changed. 
+Solution: use the built-in Rails assets pipeline. The assets pipeline in rails uses fingerprinting, which is a type of algorithm that makes the file name dependent on the file contents (so the actual data). Now, if you swapped out 1 image for another but kept the filename the same, the browser will know not to use the cached version because the fingerprint has changed. 
 
 Go to `./app/assets`, save photo in your images folder, and whenever you want to reference this image's path, use the built-in rails helper `image_url` (or `asset_url`). If you want an HTML image tag, you can also use the built in `image_tag` helper method. 
 
 Takeaway: don't put images in `./public`! Make use of the assets pipeline. 
+ FOR LATER: ADD CLASS to image tag, style it so it's not...like it is
+ (driver will clone repo)
 
 How to access assets in diff parts of your app? 
 - In rails views: `image_url`, `asset_url`, `image_tag`
@@ -100,7 +98,7 @@ How to access assets in diff parts of your app?
 Now in our React components, we have reference to this image through `window.warblerURL`
 Let's go to our app component and use this! 
 4) app.jsx line 14:
-    `<img src={window.warblerURL} />`
+    `<img className="img-warbler" src={window.warblerURL} />`
 5) git add ., git commit, git push origin master, git push heroku master
 6) check it out!
  
@@ -110,13 +108,19 @@ Let's go to our app component and use this!
 Heroku is pickier than webpack and may reject your initial push if something's broken that webpack didn't pick up.
 - make sure git is up to date (run git status)
 - look at your stack before the push rejected message 
+- can run `heroku logs` as well (shows server logs for our app in production)
+
+Remember that we DO push to heroku all together after this, so first look at the stack trace and try to solve on your own, but we are here to help you. 
 
 Useful commands for debugging after initial push:
-- `heroku logs -t` shows your heroku logs - include server errors etc
+- `heroku logs` shows server logs for our app in production 
 - `heroku run be rails console` - lets you interact w prod database
 - you can run any rails command by appending `heroku run` in front of it 
 
+
 ## Top Ten FullStack Bugs
+
+We'll slack and email this out - should be your first stop on bugs you can't catch right away! 
 
 https://github.com/appacademy/ny-lecture-notes/blob/master/fullstacks/heroku/top_ten_fullstack_bugs.md
 

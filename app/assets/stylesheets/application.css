@@ -25,6 +25,16 @@ body > h1 {
   text-align: center;
 }
 
+.app-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-warlber {
+  height: 200px;
+}
+
 .signup-form-container {
   border: 4px solid #4d3c4d;
   margin: 5px;
