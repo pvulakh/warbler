@@ -20,7 +20,7 @@ export const receiveWarbles = (warbles) => {
 // that will NOT require interacting with the database
 
 export const receiveWarble = (warble) => { // regular action creator since returns a pojo with a type property
-  debugger
+  // debugger
   return {
     type: RECEIVE_WARBLE,
     warble,
@@ -46,22 +46,22 @@ export const fetchWarbles = () => {
 };
 
 export const fetchWarble = id => {
-  debugger
+  // debugger
   return dispatch => {
-    debugger
+    // debugger
     return WarbleAPIUtil.fetchWarble(id).then(warble => {
-      debugger
+      // debugger
       return dispatch(receiveWarble(warble));
     });
   };
 };
 
 export const createWarble = warble => {
-  debugger
+  // debugger
   return (dispatch) => {
-    debugger
+    // debugger
     return WarbleAPIUtil.createWarble(warble).then(warble => {
-      debugger
+      // debugger
       return dispatch(receiveWarble(warble));
     });
   };
