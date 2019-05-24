@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body > img {
+  display: block;
+  margin: auto;
+  width: 150px;
+  height: 150px;
+}
+
+body > h1 {
+  text-align: center;
+}
+
+.signup-form-container {
+  border: 4px solid #4d3c4d;
+  margin: 5px;
+  height: 450px;
+  width: 550px;
+  background: #f6f6f6;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.signup-header {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.signup-header > header {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-header > img {
+  width: 150px;
+  height: 150px;
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 150px;
+  align-items: center;
+}
+
+.form-name {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  font-weight: bold;
+}
+
+.form-name > input {
+  width: 250px;
+  /* box-shadow: 2px 2px 3px 0 grey; */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.form-password {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  font-weight: bold;
+}
+
+.form-password > input {
+  width: 250px;
+  /* box-shadow: 2px 2px 3px 0 grey; */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.signup-form input[type="submit"] {
+  color: white;
+  background-color: #82968c;
+  border-radius: 20px;
+  padding: 18px 30px;
+  border: 2px solid #4c3b4d;
+  box-shadow: 2px 2px 3px 0 grey;
+  cursor: pointer;
+}

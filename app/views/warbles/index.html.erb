@@ -1,0 +1,6 @@
+<h1>All Warbles</h1>
+<% @warbles.each do |warble| %>
+  <%= warble.body + " | " + warble.author.name %>
+  <a href="<%= warble_url(warble) %>">show warble</a>
+  <br/>
+<% end %>

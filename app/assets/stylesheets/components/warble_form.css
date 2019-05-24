@@ -1,0 +1,18 @@
+.warble-form {
+  margin: 40px;
+}
+
+#warble-body {
+  margin-left: 5px;
+}
+
+.warble-form > input[type="submit"] {
+    background-color: red;
+    color: white;
+    border: 2px solid lightgray;
+    border-radius: 20px;
+    box-shadow: 2px 2px 3px 0 grey;
+    width: fit-content;
+    margin: 10px 0;
+    padding: 5px;
+}

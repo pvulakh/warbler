@@ -1,0 +1,7 @@
+<h1>Show Page</h1>
+<p><%= @warble.body %></p>
+<p><%= @warble.author.name %></p>
+<form method="POST" action="<%= warble_url(@warble)%>">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" value="Delete Warble">
+</form>

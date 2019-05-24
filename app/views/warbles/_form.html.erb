@@ -1,0 +1,26 @@
+<% # if edit %>
+   <% # action = warble_url(warble) %>
+   <% # button_text = "Edit Warble" %>
+ <% # else %>
+   <% # action = warbles_url %>
+   <% # button_text = "Warble It" %>
+ <% # end %>
+ <% action = warble.persisted? ? warble_url(warble) : warbles_url %>
+ <% button_text = warble.persisted? ? "Edit Warble" : "Warble It" %>
+ 
+
+<form action="<%= action %>" method="POST">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+  <% if warble.persisted? %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+  <label for="warble_body">Body 
+  </label>
+  <input type="text"
+         value="<%= warble.body %>"
+         id="warble_body"
+         name="warble[body]">
+  <input type="submit" value="<%= button_text %>">
+</form>
