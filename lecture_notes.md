@@ -90,7 +90,7 @@ Takeaway: don't put images in `./public`! Make use of the assets pipeline.
 Which methods to use in which part of your app? 
 - In rails views: `image_url`, `asset_url`, `image_tag`
 - To transfer to the frontend: bootstrap to your window! Let's do that. 
-1) in application.html.erb, let's comment out our image_tag on line 17. 
+1) in application.html.erb, let's remove our image_tag on line 17. 
 2) on line 10, 
   ``` 
     <script type="text/javascript">
