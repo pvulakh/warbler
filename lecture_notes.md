@@ -87,7 +87,7 @@ Go to `./app/assets`, save photo in your images folder, and whenever you want to
 
 Takeaway: don't put images in `./public`! Make use of the assets pipeline. 
 
-Which methods to use in which part of your app? 
+How to access assets in diff parts of your app? 
 - In rails views: `image_url`, `asset_url`, `image_tag`
 - To transfer to the frontend: bootstrap to your window! Let's do that. 
 1) in application.html.erb, let's remove our image_tag on line 17. 
@@ -97,7 +97,8 @@ Which methods to use in which part of your app?
       window.warblerURL = "<%= image_url('warbler.png')%>"
     </script>
   ```
-3) in react components, we have reference to this image through `window.warblerURL`
+Now in our React components, we have reference to this image through `window.warblerURL`
+Let's go to our app component and use this! 
 4) app.jsx line 14:
     `<img src={window.warblerURL} />`
 5) git add ., git commit, git push origin master, git push heroku master
@@ -110,10 +111,10 @@ Heroku is pickier than webpack and may reject your initial push if something's b
 - make sure git is up to date (run git status)
 - look at your stack before the push rejected message 
 
-Userful commands for debugging after initial push:
-- `heroku logs -t` shows your heroku logs, server errors etc
-- `heroku run rails console` - lets you interact w prod database
-
+Useful commands for debugging after initial push:
+- `heroku logs -t` shows your heroku logs - include server errors etc
+- `heroku run be rails console` - lets you interact w prod database
+- you can run any rails command by appending `heroku run` in front of it 
 
 ## Top Ten FullStack Bugs
 
