@@ -81,10 +81,28 @@ You're working on your fullstack, you've saved an image for your splash with the
 in your `./public` folder. You go to look at your site but...the old image is still there!
 That's because the browser cached it since the filename was the same. 
 
-Solution: use the built-in Rails assets pipeline. The assets pipeline in rails uses fingerprinting, which is a type of algorithm
-that makes file names dependent on the file contents (so the actual data).
+Solution: use the built-in Rails assets pipeline. The assets pipeline in rails uses fingerprinting, which is a type of algorithm that makes the fingerprint on the end of the file name dependent on the file contents (so the actual data). Now, if you swapped out 1 image for another but kept the filename the same, the browser will know not to use the cached version because the fingerprint has changed. 
 
-Go to `./app/assets`, save photo in your images folder, and whenever you want to reference this image's path, use the built-in rails helper `image_url` (or `asset_url`). 
+Go to `./app/assets`, save photo in your images folder, and whenever you want to reference this image's path, use the built-in rails helper `image_url` (or `asset_url`). If you want an HTML image tag, you can also use the built in `image_tag` helper method. 
+
+Takeaway: don't put images in `./public`! Make use of the assets pipeline. 
+
+Which methods to use in which part of your app? 
+- In rails views: `image_url`, `asset_url`, `image_tag`
+- To transfer to the frontend: bootstrap to your window! Let's do that. 
+1) in application.html.erb, let's comment out our image_tag on line 17. 
+2) on line 10, 
+  ``` 
+    <script type="text/javascript">
+      window.warblerURL = "<%= image_url('warbler.png')%>"
+    </script>
+  ```
+3) in react components, we have reference to this image through `window.warblerURL`
+4) app.jsx line 14:
+    `<img src={window.warblerURL} />`
+5) git add ., git commit, git push origin master, git push heroku master
+6) check it out!
+ 
 
 ## Troubleshooting
 

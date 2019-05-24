@@ -11,6 +11,7 @@ export default ({ store }) => (
   <Provider store={store}> 
     <HashRouter>
       <div className="app-content">
+      <img src={window.warblerURL} />
         <Switch >
           <Route path='/users' component={UserIndex} /> 
           <Route path='/new_warble' component={NewWarbleForm} />
