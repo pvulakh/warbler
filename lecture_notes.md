@@ -43,12 +43,10 @@ a git repo within this new warbler directory.
 ## Heroku time! 
 
 In order to push to heroku, you'll need to create a heroku account and download the heroku
-command line interface. [Driver] already has an account and the heroku cli installed so we won't go through
-that process right now. 
+command line interface. [Driver] already has an account and the heroku cli installed so we won't go through that process right now. 
 
 There's a reading on aaonline walking you through this process and 
-we'll all push to heroku together after this mini lecture, so you'll have all of us to help you with that if you
-run into any snags. 
+we'll all push to heroku together after this mini lecture, so you'll have all of us to help you with that if you run into any snags. 
 
 1) go to heroku.com and login
 2) new --> create new app (warbler-2 if avail)
@@ -63,21 +61,21 @@ run into any snags.
   * different from git push origin master! 
   you will always have to first push to master (or whatever feature branch you're working on), 
   and THEN push to heroku afterwards
-9 ) `heroku logs -t`
-  * useful command, shows errors like database isn't set up
+9 ) `heroku logs`
+  * useful command, shows server logs for our app in production 
 9) `git push heroku master db:migrate`
 10) `git push heroku master db:seed`
 
 ## Static Images
 
 Old way: put images into the `./public` folder in our app (this is where our 404 page goes, etc)
-[give caching example]
+
 You're working on your fullstack, you've saved an image for your splash with the title of 
 `best-cat-ever.png` into `./public`. A few days later, you find a MUCH BETTER cat image and you want to change your splash. You call this image `best-cat-ever.png` as well, and replace it
 in your `./public` folder. You go to look at your site but...the old image is still there!
 That's because the browser cached it since the filename was the same. 
 
-Solution: use the built-in Rails assets pipeline. The assets pipeline in rails uses fingerprinting, which is a type of algorithm that makes the file name dependent on the file contents (so the actual data). Now, if you swapped out 1 image for another but kept the filename the same, the browser will know not to use the cached version because the fingerprint has changed. 
+Solution: use the built-in Rails assets pipeline. The assets pipeline in rails uses fingerprinting, which is a type of algorithm that makes the file name dependent on the file contents (just like how two people might share the same name, but still have different fingerprints). Now, if you swapped out 1 image for another but kept the filename the same, the browser will know not to use the cached version because the fingerprint has changed. 
 
 Go to `./app/assets`, save photo in your images folder, and whenever you want to reference this image's path, use the built-in rails helper `image_url` (or `asset_url`). If you want an HTML image tag, you can also use the built in `image_tag` helper method. 
 
@@ -85,7 +83,8 @@ Takeaway: don't put images in `./public`! Make use of the assets pipeline.
 
 How to access assets in diff parts of your app? 
 - In rails views: `image_url`, `asset_url`, `image_tag`
-- To transfer to the frontend: bootstrap to your window! Let's do that. 
+- Right now, our warbler app users `image_tag` to render our warbler image in application.html.erb. 
+- To use these files in the frontend: bootstrap to your window! Let's do that. 
 1) in application.html.erb, let's remove our image_tag on line 17. 
 2) on line 10, 
   ``` 
