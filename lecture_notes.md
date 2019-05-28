@@ -8,15 +8,15 @@
 We'll add heroku as a git remote repository for Warble and push all our code up.
 
 What does our repo look like right now? 
-- we gitignore node_modules , bundle.js so our repo won't have that 
-- we also don't have data or gems on the repo 
+- we gitignore node_modules, bundle.js so our repo won't have that 
+- we also don't have data or gems in the repo 
 - So just like when we clone a repo/download a skeleton onto a new computer and we do some setup
  (bundle install for gems and npm install for node modules), 
   we'll need to do the same type of setup for heroku
 
 ## Prepare Warbler :) 
 
-* As you know from looking at our lecture notes, warbler itself was not a git repo
+quick note: As you know from looking at our lecture notes, warbler itself was not a git repo
 because we never want nested repositories! In order to push to heroku, 
 we've copied warbler into a seperate directory outside of lecture notes and initialized
 a git repo within this new warbler directory. 
