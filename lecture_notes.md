@@ -16,16 +16,15 @@ What does our repo look like right now?
 
 ## Prepare Warbler :) 
 
-quick note: As you know from looking at our lecture notes, warbler itself was not a git repo
-because we never want nested repositories! In order to push to heroku, 
+quick note: As you know from looking at our lecture notes repository, warbler itself was not a git repo because we never want nested repositories! In order to push to heroku, 
 we've copied warbler into a seperate directory outside of lecture notes and initialized
-a git repo within this new warbler directory. 
+a git repo within this new warbler directory. This is what we're working with today. 
 
 Now we'll go through the steps that you will be going through with your own apps later today. 
 
 1) remove all debuggers from warbler (cmd+shift+f)
-2) make sure you're gitignoring node_modules, bundle.js
-3) package.json - add engines (our npm and node versions)
+2) gitignore: make sure ignoring node_modules, bundle.js
+3) package.json - add engines (our npm and node versions) and scripts
   ```
   {
   "engines": { // top-level key
@@ -39,14 +38,14 @@ Now we'll go through the steps that you will be going through with your own apps
 ```
 4) `bundle install`
 5) `npm install` 
-6) `git add .`
+6) `git status`, `git add .`, `git status`
 7) `git commit -m 'Prepare for initial heroku push'`
 8) `git push origin master`
 
 ## Heroku time! 
 
 In order to push to heroku, you'll need to create a heroku account and download the heroku
-command line interface. [Driver] already has an account and the heroku cli installed so we won't go through that process right now. 
+command line interface. Oliver already has an account and the heroku cli installed so we won't go through that process right now. 
 
 There's a reading on aaonline walking you through this process and 
 we'll all push to heroku together after this, so you'll have all of us to help you with that if you run into any snags. 
