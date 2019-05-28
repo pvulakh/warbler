@@ -26,6 +26,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.1.0"
+  },
   "scripts": {
     "postinstall": "webpack"
   }
